@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.4">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        h1 {
+            text-align: center;
+            font-family: cursive;
+            color: #333;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            font-size: 100px
+        }
+        
+        canvas {
+            border: 2px solid black;
+            background-color: #FED9ED;
+        }
+    </style>
+
+ <h1>Shapes</h1>
+ 
+    <canvas id="parallelogram" width="340" height="340"></canvas>
+    <canvas id="nonagon" width="340" height="340"></canvas>
+    <canvas id="square" width = "340" height = "340"></canvas>
+    <canvas id="rectangle" width = "340" height = "340"></canvas>
+    <canvas id="circle" width = "340" height = "340"></canvas> 
+    <canvas id="star" width = "340" height = "340"></canvas>
+    <canvas id="oval" width = "340" height = "340"></canvas>
+    <canvas id="heptagon" width = "340" height = "340"></canvas>
+    <canvas id="octagon" width = "340" height = "340"></canvas>
+    <canvas id="triangle" width = "340" height = "340"></canvas>
+    <canvas id="heart" width = "340" height = "340"></canvas>
+    <canvas id="pentagon" width = "340" height = "340"></canvas>
+    
+
+</body>
+<script>
+
+        //square
+        var sq = document.getElementById('square').getContext("2d");
+        sq.fillText('Square', 110, 270); 
+        sq.rect(50, 50, 200, 200);
+        sq.fillStyle = "lavender";
+        sq.fill();
+        sq.strokeStyle = "black";
+        sq.lineWidth = 3;
+        sq.strokeRect(50, 50, 200, 200);
+    
+        //rectangle
+        var rec = document.getElementById('rectangle').getContext("2d");
+        rec.fillText('Rectangle', 110, 270); 
+        rec.rect(50, 100, 200, 100);
+        rec.fillStyle = "lavender";
+        rec.fill(); 
+        rec.strokeStyle = "black";
+        rec.lineWidth = 3;
+        rec.strokeRect(50, 100, 200, 100);
+
+        //circle
+        var circle = document.getElementById('circle').getContext("2d");
+        circle.fillText('Circle', 130, 270);
+        circle.fillStyle = "lavender";
+        circle.arc(150, 150, 100, 0, 2*Math.PI);
+        circle.fill();
+        circle.strokeStyle = "black";
+        circle.lineWidth = 3;
+        circle.stroke(); 
+   
+        //triangle
+        var triangle = document.getElementById('triangle').getContext("2d");
+        triangle.fillText('Triangle', 115, 270);
+        triangle.fillStyle = "lavender";
+        triangle.moveTo(150, 50);
+        triangle.lineTo(50, 250);
+        triangle.lineTo(250, 250);
+        triangle.closePath(); 
+        triangle.fill();
+        triangle.strokeStyle = "black"; 
+        triangle.lineWidth = 3; 
+        triangle.stroke(); 
+        
+        // Draw a heart
+        var canvas = document.getElementById('heart');
+        var ctx = canvas.getContext('2d');
+        ctx.fillText('Heart', 135, 270);
+        ctx.fillStyle = 'lavender';
+        ctx.beginPath();
+        ctx.moveTo(150, 100);
+        ctx.bezierCurveTo(120, 40, 40, 40, 40, 100);
+        ctx.bezierCurveTo(40, 140, 150, 250, 150, 250);
+
+        ctx.bezierCurveTo(150, 250, 260, 140, 260, 100);
+        ctx.bezierCurveTo(260, 40, 180, 40, 150, 100);
+        ctx.fill();
+        ctx.strokeStyle = "black"; 
+        ctx.lineWidth = 3; 
+        ctx.stroke(); 
+        
+        var canvas = document.getElementById('pentagon');
+        var ctx = canvas.getContext('2d');
+        ctx.fillText('Pentagon', 110, 270);
+        ctx.fillStyle = 'lavender';
+        // Draw a pentagon
+        ctx.beginPath();
+        ctx.moveTo(150 + 100 * Math.cos(0), 150 + 100 * Math.sin(0));              
+        for (var i = 1; i <= 5; i++) {
+            ctx.lineTo(150 + 100 * Math.cos(i * 2 * Math.PI / 5), 150 + 100 * Math.sin(i * 2 * Math.PI / 5));
+        }
+        ctx.closePath(); 
+        ctx.fill();
+        ctx.strokeStyle = "black"; 
+        ctx.lineWidth = 3; 
+        ctx.stroke();
+        
+        var canvas = document.getElementById('star');
+        var ctx = canvas.getContext('2d');
+        ctx.fillText('Star', 130, 270);    
+        ctx.fillStyle = 'lavender';
+        // Draw a star
+        ctx.beginPath();
+        var x = 150;
+        var y = 150;
+        var outerRadius = 100;
+        var innerRadius = 50;
+        var rotation = Math.PI / 2; 
+        
+        for (var i = 0; i < 5; i++) {
+            var outerX = x + Math.cos((i * 2 * Math.PI) / 5 - rotation) * outerRadius;
+            var outerY = y + Math.sin((i * 2 * Math.PI) / 5 - rotation) * outerRadius;
+            var innerX = x + Math.cos(((i * 2 + 1) * Math.PI) / 5 - rotation) * innerRadius;
+            var innerY = y + Math.sin(((i * 2 + 1) * Math.PI) / 5 - rotation) * innerRadius;
+
+            ctx.lineTo(outerX, outerY);
+            ctx.lineTo(innerX, innerY);
+        }
+        ctx.closePath(); 
+        ctx.fill();
+        ctx.strokeStyle = "black"; 
+        ctx.lineWidth = 3; 
+        ctx.stroke();
+        
+        var canvas = document.getElementById('oval');
+        var ctx = canvas.getContext('2d');
+        ctx.fillText('Oval', 130, 180);
+        ctx.fillStyle = 'lavender';
+        // Draw a oval (ellipse)
+        ctx.beginPath();
+        ctx.ellipse(150, 100, 100, 50, 0, 0, Math.PI * 2); // x, y, radiusX, radiusY, rotation, startAngle, endAngle
+        ctx.closePath();
+        ctx.fill();
+        ctx.strokeStyle = "black"; 
+        ctx.lineWidth = 3; 
+        ctx.stroke();
+        
+        var canvas = document.getElementById('heptagon');
+        var ctx = canvas.getContext('2d');
+        ctx.fillText('Heptagon', 100, 270);
+        ctx.fillStyle = 'lavender';
+        // Draw a whole heptagon
+        ctx.beginPath();
+        var x = 150;
+        var y = 150;
+        var sides = 7;
+        var size = 100;
+        ctx.moveTo(x + size * Math.cos(0), y + size * Math.sin(0));
+        for (var i = 1; i <= sides; i++) {
+            ctx.lineTo(x + size * Math.cos(i * 2 * Math.PI / sides), y + size * Math.sin(i * 2 * Math.PI / sides));
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.strokeStyle = "black"; 
+        ctx.lineWidth = 3; 
+        ctx.stroke();
+        
+        var canvas = document.getElementById('octagon');
+        var ctx = canvas.getContext('2d');
+        ctx.fillText('Octagon', 110, 270);
+        ctx.fillStyle = 'lavender';
+        // Draw a whole octagon
+        ctx.beginPath();
+        var x = 150;
+        var y = 150;
+        var sides = 8;
+        var size = 100;
+        ctx.moveTo(x + size * Math.cos(0), y + size * Math.sin(0));
+        for (var i = 1; i <= sides; i++) {
+            ctx.lineTo(x + size * Math.cos(i * 2 * Math.PI / sides), y + size * Math.sin(i * 2 * Math.PI / sides));
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.strokeStyle = "black"; 
+        ctx.lineWidth = 3; 
+        ctx.stroke();
+        
+        var canvas = document.getElementById('parallelogram');
+        var ctx = canvas.getContext('2d');
+        ctx.fillText('Parallelogram', 70, 180);
+        ctx.fillStyle = 'lavender';
+        // Draw a whole parallelogram
+        ctx.beginPath();
+        ctx.moveTo(50, 50);
+        ctx.lineTo(150, 50);
+        ctx.lineTo(200, 150);
+        ctx.lineTo(100, 150);
+        ctx.closePath();
+        ctx.fill();
+        ctx.strokeStyle = "black"; 
+        ctx.lineWidth = 3; 
+        ctx.stroke();
+        
+        var canvas = document.getElementById('nonagon');
+        var ctx = canvas.getContext('2d');
+        ctx.fillText('Nonagon', 110, 270);
+        ctx.fillStyle = 'lavender';
+        // Draw a nonagon
+        ctx.beginPath();
+        var x = 150;
+        var y = 150;
+        var sides = 9;
+        var size = 100;
+        ctx.moveTo(x + size * Math.cos(0), y + size * Math.sin(0));
+        for (var i = 1; i <= sides; i++) {
+        ctx.lineTo(x + size * Math.cos(i * 2 * Math.PI / sides), y + size * Math.sin(i * 2 * Math.PI / sides));
+
+        }
+
+        ctx.closePath();
+        ctx.fill();
+        ctx.strokeStyle = "black"; 
+        ctx.lineWidth = 3; 
+        ctx.stroke();
+
+   </script>
+   </html>
